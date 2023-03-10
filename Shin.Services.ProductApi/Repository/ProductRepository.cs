@@ -27,8 +27,10 @@ public class ProductRepository : IProductRepository
         {
             dbContext.Products.Update(product);
         }
-
-        await dbContext.Products.AddAsync(product);
+        else
+        {
+            await dbContext.Products.AddAsync(product);
+        }        
         await dbContext.SaveChangesAsync();
         return mapper.Map<ProductDto>(product);
     }
